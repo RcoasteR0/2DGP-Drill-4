@@ -9,7 +9,9 @@ character = load_image('animation_sheet.png')
 running = True
 
 def handle_events():
-    global running
+    #global running
+    #global : 전역변수로 지정
+    #global 선언이 없으면 running이 지역변수로 생성됨
 
     events = get_events()
     for event in events:
