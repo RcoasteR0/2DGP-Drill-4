@@ -5,10 +5,8 @@ open_canvas()
 bg = load_image('TUK_GROUND.png')
 character = load_image('SNES - Dragon Quest 3 JPN - Character Classes.png')
 
-
-
 def handle_events():
-    global running, dirX, dirY, animate
+    global running, dirX, dirY, animate, direction
 
     events = get_events()
     for event in events:
@@ -18,15 +16,19 @@ def handle_events():
             if event.key == SDLK_RIGHT:
                 dirX += 1
                 animate += 1
+                direction = 2
             elif event.key == SDLK_LEFT:
                 dirX -= 1
                 animate += 1
+                direction = 6
             elif event.key == SDLK_UP:
                 dirY += 1
                 animate += 1
+                direction = 0
             elif event.key == SDLK_DOWN:
                 dirY -= 1
                 animate += 1
+                direction = 4
             elif event.key == SDLK_ESCAPE:
                 running = False
         elif event.type == SDL_KEYUP:
@@ -52,21 +54,22 @@ frame_gap_Y = 216 // 9
 dirX = 0
 dirY = 0
 animate = 0
+direction = 0
 
 while running:
     clear_canvas()
 
     bg.draw(800 // 2, 600 // 2)
-    character.clip_draw(frame * frame_gap_X, 0, frame_gap_X, frame_gap_Y, x, y)
+    character.clip_draw(frame * frame_gap_X, 0, frame_gap_X, frame_gap_Y, x, y, 100, 150)
 
     update_canvas()
     handle_events()
 
     if animate:
-        frame = (frame + 1) % 2
+        frame = (frame + 1) % 2 + direction
 
-    x += dirX * 5
-    y += dirY * 5
+    x += dirX * 10
+    y += dirY * 10
     delay(0.05)
 
 close_canvas()
