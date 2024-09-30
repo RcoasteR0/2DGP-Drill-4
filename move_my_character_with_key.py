@@ -1,5 +1,8 @@
+#Drill#5 (2022180007)
 from pico2d import *
 
+character_class = 8 #직업 변경(0~8)
+character_sex = 0 #성별 변경(0~1)
 
 open_canvas()
 bg = load_image('TUK_GROUND.png')
@@ -60,7 +63,9 @@ while running:
     clear_canvas()
 
     bg.draw(800 // 2, 600 // 2)
-    character.clip_draw(frame * frame_gap_X, 0, frame_gap_X, frame_gap_Y, x, y, 100, 150)
+    character.clip_draw(frame * frame_gap_X + character_sex * frame_gap_X * 8,
+                        character_class * frame_gap_Y,
+                        frame_gap_X, frame_gap_Y, x, y, 100, 150)
 
     update_canvas()
     handle_events()
