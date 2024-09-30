@@ -36,6 +36,7 @@ def handle_events():
 
 running = True
 x = 800 // 2
+y = 600 // 2
 frame = 0
 dirX = 0
 dirY = 0
@@ -43,7 +44,7 @@ dirY = 0
 while running:
     clear_canvas()
 
-
+    bg.draw(x, y)
 
     update_canvas()
     handle_events()
